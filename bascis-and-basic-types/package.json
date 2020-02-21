@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "lite-server"
   },
-  "keywords": [],
+  "keywords": [
+    "typescript"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
