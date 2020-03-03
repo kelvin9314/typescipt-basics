@@ -1,3 +1,5 @@
- 
-console.log(123);
-console.log('Time to get started...');
+let text: string
+
+text = 'kelvin'
+
+console.log(`${text} is a man`);

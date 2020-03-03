@@ -1,3 +1,4 @@
 "use strict";
-console.log(123);
-console.log('Time to get started...');
+var text;
+text = 'kelvin';
+console.log(text + " is a man");

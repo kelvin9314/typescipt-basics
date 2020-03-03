@@ -66,5 +66,13 @@
   "exclude": [
     "node_modules"  // would be the default
     //"**/*.dev.js"
-  ]
+  ],
+  // "include": [
+
+  // ],
+  // option for small project , in real world it may not br used
+  // "files": [ 
+  //   "app.ts"
+  // ]
 }
+ 
