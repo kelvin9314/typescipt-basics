@@ -1,9 +1,9 @@
 class Department {
-  // private id: string;
+  // private readonly id: string;
   // private name: string;
   private employees: string[] = []
 
-  constructor(private id: string, private name: string) {
+  constructor(private readonly id: string, private name: string) {
     // this.id = id
     // this.name = n
   }
@@ -36,3 +36,36 @@ accounting.describe()
 
 // const accountingCopy2 = {name: 'copy', describe: accounting.describe}
 // accountingCopy2.describe()  //  it return undefined
+
+
+class ITDepartment extends Department {
+  
+  constructor(id: string, private admins: string[]){
+    super(id, 'IT')
+  }
+}
+
+const it = new ITDepartment('d1',['Max'])
+it.addEmployees('Max')
+it.addEmployees('Hugo')
+
+it.printEmployeeInfo()
+
+class AccountDepartment extends Department {
+  
+  constructor(id: string, private reports: string[]){
+    super(id, 'ACCOUNTING')
+  }
+
+  addReport(text: string){
+    this.reports.push(text)
+  }
+
+  printReports(){
+    console.log(this.reports)
+  }
+}
+
+const account = new AccountDepartment('d2', [])
+account.addReport('Math')
+account.printReports()
