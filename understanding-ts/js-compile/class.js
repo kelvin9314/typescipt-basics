@@ -19,7 +19,11 @@ var Department = (function () {
         this.id = id;
         this.name = name;
         this.employees = [];
+        console.log(Department.fiscalYear);
     }
+    Department.crateEmployee = function (name) {
+        return { name: name };
+    };
     Department.prototype.describe = function () {
         console.log("Department: (" + this.id + ") " + this.name);
     };
@@ -30,6 +34,7 @@ var Department = (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
+    Department.fiscalYear = 2021;
     return Department;
 }());
 var accounting = new Department('0001', 'Accounting');
@@ -45,6 +50,8 @@ var ITDepartment = (function (_super) {
     }
     return ITDepartment;
 }(Department));
+var employee1 = Department.crateEmployee('Max');
+console.log(employee1, Department.fiscalYear);
 var it = new ITDepartment('d1', ['Max']);
 it.addEmployees('Max');
 it.addEmployees('Hugo');

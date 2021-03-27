@@ -1,11 +1,18 @@
 class Department {
   // private readonly id: string;
   // private name: string;
+  static fiscalYear = 2021
   protected employees: string[] = []
 
   constructor(private readonly id: string, private name: string) {
     // this.id = id
     // this.name = n
+    // console.log(this.fiscalYear) // it will cause error
+    console.log(Department.fiscalYear) 
+  }
+
+  static crateEmployee(name: string){
+    return {name: name}
   }
 
   describe(this: Department){
@@ -44,6 +51,9 @@ class ITDepartment extends Department {
     super(id, 'IT')
   }
 }
+
+const employee1 = Department.crateEmployee('Max')
+console.log(employee1, Department.fiscalYear)
 
 const it = new ITDepartment('d1',['Max'])
 it.addEmployees('Max')
