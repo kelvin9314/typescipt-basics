@@ -7,6 +7,8 @@ var __extends = (this && this.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -54,6 +56,11 @@ var AccountDepartment = (function (_super) {
         _this.reports = reports;
         return _this;
     }
+    AccountDepartment.prototype.addEmployees = function (name) {
+        if (name === "Max")
+            return;
+        this.employees.push(name);
+    };
     AccountDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
     };
@@ -64,5 +71,8 @@ var AccountDepartment = (function (_super) {
 }(Department));
 var account = new AccountDepartment('d2', []);
 account.addReport('Math');
+account.addEmployees('Max');
+account.addEmployees('Manu');
 account.printReports();
+account.printEmployeeInfo();
 //# sourceMappingURL=class.js.map
