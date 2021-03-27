@@ -54,8 +54,25 @@ var AccountDepartment = (function (_super) {
     function AccountDepartment(id, reports) {
         var _this = _super.call(this, id, 'ACCOUNTING') || this;
         _this.reports = reports;
+        _this.lastReport = reports[0];
         return _this;
     }
+    Object.defineProperty(AccountDepartment.prototype, "mostRecentReport", {
+        get: function () {
+            if (!this.lastReport) {
+                throw new Error("No report found.");
+            }
+            return this.lastReport;
+        },
+        set: function (value) {
+            if (!value) {
+                throw new Error("please pass in a valid value");
+            }
+            this.addReport(value);
+        },
+        enumerable: false,
+        configurable: true
+    });
     AccountDepartment.prototype.addEmployees = function (name) {
         if (name === "Max")
             return;
@@ -63,6 +80,7 @@ var AccountDepartment = (function (_super) {
     };
     AccountDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
+        this.lastReport = text;
     };
     AccountDepartment.prototype.printReports = function () {
         console.log(this.reports);
@@ -70,7 +88,9 @@ var AccountDepartment = (function (_super) {
     return AccountDepartment;
 }(Department));
 var account = new AccountDepartment('d2', []);
-account.addReport('Math');
+account.mostRecentReport = 'Year end report';
+account.addReport('Something went wrong...');
+console.log(account.mostRecentReport);
 account.addEmployees('Max');
 account.addEmployees('Manu');
 account.printReports();
