@@ -77,6 +77,13 @@ var AccountDepartment = (function (_super) {
         enumerable: false,
         configurable: true
     });
+    AccountDepartment.getInstance = function () {
+        if (AccountDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountDepartment('d2', []);
+        return this.instance;
+    };
     AccountDepartment.prototype.describe = function () {
         console.log('Account Department - ID: ' + this.id);
     };
@@ -94,7 +101,10 @@ var AccountDepartment = (function (_super) {
     };
     return AccountDepartment;
 }(Department));
-var account = new AccountDepartment('d2', []);
+var account = AccountDepartment.getInstance();
+var account2 = AccountDepartment.getInstance();
+console.log(account);
+console.log(account2);
 account.mostRecentReport = 'Year end report';
 account.addReport('Something went wrong...');
 console.log(account.mostRecentReport);

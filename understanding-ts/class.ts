@@ -67,6 +67,7 @@ it.describe()
 class AccountDepartment extends Department {
   
   private lastReport: string
+  private static instance: AccountDepartment
   
   get mostRecentReport(){
     if(!this.lastReport){
@@ -84,11 +85,20 @@ class AccountDepartment extends Department {
     this.addReport(value)
   }
 
-  constructor(id: string, private reports: string[]){
+  private constructor(id: string, private reports: string[]){
     super(id, 'ACCOUNTING')
     this.lastReport = reports[0]
   }
 
+  static getInstance(){
+    if(AccountDepartment.instance){
+      return this.instance
+    }
+
+    this.instance = new AccountDepartment('d2', [])
+    return this.instance
+  }
+  
   describe(){
     console.log('Account Department - ID: ' + this.id)
   }
@@ -109,7 +119,12 @@ class AccountDepartment extends Department {
   }
 }
 
-const account = new AccountDepartment('d2', [])
+// const account = new AccountDepartment('d2', [])
+const account = AccountDepartment.getInstance()
+const account2 = AccountDepartment.getInstance()
+
+console.log(account) // there are the same object
+console.log(account2) // there are the same object
 
 // setter
 account.mostRecentReport = 'Year end report'
