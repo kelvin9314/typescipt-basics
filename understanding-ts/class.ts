@@ -1,10 +1,10 @@
-class Department {
+abstract class Department {
   // private readonly id: string;
   // private name: string;
   static fiscalYear = 2021
   protected employees: string[] = []
 
-  constructor(private readonly id: string, private name: string) {
+  constructor(protected readonly id: string, private name: string) {
     // this.id = id
     // this.name = n
     // console.log(this.fiscalYear) // it will cause error
@@ -15,9 +15,7 @@ class Department {
     return {name: name}
   }
 
-  describe(this: Department){
-    console.log(`Department: (${this.id}) ${this.name}`)
-  }
+  abstract describe(this: Department): void;
 
   addEmployees(employee: string){
     this.employees.push(employee)
@@ -29,11 +27,11 @@ class Department {
   }
 }
 
-const accounting = new Department('0001','Accounting')
-accounting.addEmployees('Max')
-accounting.addEmployees('Hugo')
+// const accounting = new Department('0001','Accounting')
+// accounting.addEmployees('Max')
+// accounting.addEmployees('Hugo')
 
-accounting.describe()
+// accounting.describe()
 
 // accounting.printEmployeeInfo()
 
@@ -50,6 +48,10 @@ class ITDepartment extends Department {
   constructor(id: string, private admins: string[]){
     super(id, 'IT')
   }
+
+  describe(){
+    console.log('IT Department - ID: ' + this.id)
+  }
 }
 
 const employee1 = Department.crateEmployee('Max')
@@ -60,6 +62,7 @@ it.addEmployees('Max')
 it.addEmployees('Hugo')
 
 it.printEmployeeInfo()
+it.describe()
 
 class AccountDepartment extends Department {
   
@@ -84,6 +87,10 @@ class AccountDepartment extends Department {
   constructor(id: string, private reports: string[]){
     super(id, 'ACCOUNTING')
     this.lastReport = reports[0]
+  }
+
+  describe(){
+    console.log('Account Department - ID: ' + this.id)
   }
 
   addEmployees(name: string){
@@ -111,6 +118,7 @@ account.addReport('Something went wrong...')
 console.log(account.mostRecentReport)
 account.addEmployees('Max')
 account.addEmployees('Manu')
-account.printReports()
 
-account.printEmployeeInfo()
+// account.printReports()
+// account.printEmployeeInfo()
+account.describe()
