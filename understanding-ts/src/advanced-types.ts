@@ -139,7 +139,7 @@ result.split(' ')
 const fetchedUserData = {
   id: 'u1',
   name: 'kelvin',
-  // job: {title: 'CEO', description: 'My own company'}
+  job: {title: 'CEO', description: 'My own company'}
 }
 
 console.log(fetchedUserData?.job?.title)

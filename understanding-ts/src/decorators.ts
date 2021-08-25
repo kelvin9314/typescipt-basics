@@ -31,6 +31,7 @@ class People {
     console.log('Creating people object...')
   }
 }
+}
 const ppl = new People()
 console.log(ppl)
 
